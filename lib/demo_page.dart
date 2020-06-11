@@ -16,7 +16,17 @@ class DemoPage extends StatefulWidget{
   
 }
 
-class DemoPageState extends State<DemoPage> {
+class DemoPageState extends State<DemoPage> with TickerProviderStateMixin {
+
+  AnimationController outerController,innerController;
+  Animation outerAnim,innerAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    outerController = AnimationController(vsync: this,duration: Duration(seconds: 1));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
