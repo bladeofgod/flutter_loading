@@ -27,8 +27,7 @@ class DemoPageState extends State<DemoPage> with TickerProviderStateMixin {
     outerController = AnimationController(vsync: this,duration: Duration(milliseconds:3000));
     innerController = AnimationController(vsync: this,duration: Duration(milliseconds: 2000));
 
-    outerAnim = Tween(begin: 0.0,end: 2.0)
-      .animate(outerController);
+    outerAnim = Tween(begin: 0.0,end: 2.0).animate(outerController);
     innerAnim = Tween(begin: 1.0,end: 0.0).animate(innerController);
     innerController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -59,13 +58,13 @@ class DemoPageState extends State<DemoPage> with TickerProviderStateMixin {
       }
     });
 
-    innerController.forward();
-    outerController.forward();
-
   }
+
 
   @override
   Widget build(BuildContext context) {
+    if(!outerController.isAnimating)outerController.forward();
+    if(!innerController.isAnimating)innerController.forward();
     return Container(
       color: Colors.white,
       child: Column(
