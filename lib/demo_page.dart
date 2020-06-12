@@ -22,6 +22,13 @@ class DemoPageState extends State<DemoPage> with TickerProviderStateMixin {
   Animation outerAnim,innerAnim;
 
   @override
+  void dispose() {
+    outerController?.dispose();
+    innerController?.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     outerController = AnimationController(vsync: this,duration: Duration(milliseconds:3000));
